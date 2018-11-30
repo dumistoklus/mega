@@ -1,5 +1,6 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 const config = {
     stats: {
@@ -29,6 +30,14 @@ const config = {
     module: {
         rules: [
             {
+                test: /\.css$/,
+                loader: 'css-loader'
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
                 test: /\.jsx?$/,
                 loaders: [
                     'babel-loader',
@@ -40,6 +49,7 @@ const config = {
 
     plugins: [
         new webpack.optimize.ModuleConcatenationPlugin(),
+        new VueLoaderPlugin()
     ]
 };
 
