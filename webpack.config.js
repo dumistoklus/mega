@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = {
     stats: {
@@ -31,7 +32,10 @@ const config = {
         rules: [
             {
                 test: /\.css$/,
-                loader: 'css-loader'
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader'
+                ]
             },
             {
                 test: /\.vue$/,
@@ -49,7 +53,10 @@ const config = {
 
     plugins: [
         new webpack.optimize.ModuleConcatenationPlugin(),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'styles.css'
+        })
     ]
 };
 
