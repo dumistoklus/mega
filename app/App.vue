@@ -1,17 +1,24 @@
 <template>
-    <div id="app">
+    <div>
         <h2 class="title">{{ welcome }}</h2>
-        <button>click me!</button>
+        <div id="angular-root"></div>
     </div>
 </template>
 
 <script>
+    import 'core-js/es7/reflect';
+    import 'zone.js';
+    import {initAngular} from "./angularApp";
+
     export default {
         name: 'app',
         data() {
             return {
                 welcome: 'Hello from vue',
             }
+        },
+        mounted: function () {
+            this.$nextTick(initAngular)
         }
     }
 </script>

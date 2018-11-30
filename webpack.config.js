@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
     stats: {
@@ -25,11 +25,20 @@ const config = {
     },
 
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.ts'],
     },
 
     module: {
         rules: [
+            {
+                test: /\.ts$/,
+                use: [
+                    {
+                        loader: 'awesome-typescript-loader',
+                        options: { configFileName: resolve(__dirname, 'tsconfig.json') }
+                    },
+                ]
+            },
             {
                 test: /\.css$/,
                 use: [
