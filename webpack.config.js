@@ -24,7 +24,8 @@ module.exports = (env) => {
     };
 
     if (useTerser) {
-        options.compress.ecma = 5;
+        options.compress.ecma = 6;
+        options.output.ecma = 6;
     }
 
     const minificator = useTerser ? new TerserJsPlugin({
@@ -40,7 +41,7 @@ module.exports = (env) => {
 
         mode: mode,
 
-        entry: './main.jsx',
+        entry: './main.js',
 
         output: {
             filename: 'main.js',
@@ -62,7 +63,8 @@ module.exports = (env) => {
         module: {
             rules: [
                 {
-                    test: /\.ts$/,
+
+                    test: /\.tsx?$/,
                     use: [
                         {
                             loader: 'awesome-typescript-loader',

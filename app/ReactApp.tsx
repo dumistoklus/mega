@@ -4,6 +4,8 @@ import './react.css';
 
 export default class ReactApp extends Component {
 
+    private container: HTMLElement;
+
     componentDidMount() {
         renderVueApp(this.container);
     }
